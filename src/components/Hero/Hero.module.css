@@ -1,0 +1,169 @@
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: var(--navbar-height);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ambient background glow — keep for whichever layout you choose */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(56, 189, 248, 0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 80% 80%,  rgba(20, 184, 166, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--section-pad-x);
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* Entrance animation */
+.container > * {
+  animation: fadeUp 0.7s ease both;
+}
+.container > *:nth-child(1) { animation-delay: 0.05s; }
+.container > *:nth-child(2) { animation-delay: 0.15s; }
+.container > *:nth-child(3) { animation-delay: 0.25s; }
+.container > *:nth-child(4) { animation-delay: 0.35s; }
+.container > *:nth-child(5) { animation-delay: 0.45s; }
+.container > *:nth-child(6) { animation-delay: 0.55s; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Highlighted keywords inside bio */
+.bio strong {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* ── Common hero building blocks (uncomment as you build) ── */
+
+/* Greeting */
+.greeting {
+  font-family: var(--font-mono);
+  font-size: var(--text-base);
+  color: var(--color-primary);
+  margin-bottom: var(--space-4);
+  letter-spacing: 0.04em;
+}
+
+/* Name */
+.name {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 900;
+  line-height: 1.05;
+  margin-bottom: var(--space-4);
+  background: var(--gradient-primary-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Role / tagline — typewriter */
+.role {
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-6);
+  min-height: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.typed {
+  color: var(--color-accent);
+}
+
+.cursor {
+  color: var(--color-primary);
+  font-weight: 300;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* Bio */
+.bio {
+  font-size: var(--text-lg);
+  color: var(--color-text-muted);
+  max-width: 540px;
+  line-height: 1.7;
+  margin-bottom: var(--space-10);
+}
+
+/* CTA row */
+.ctas {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-10);
+}
+
+/* Social icons row */
+.socials {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.socialLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  color: var(--color-text-muted);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  transition: color var(--transition-fast), border-color var(--transition-fast),
+              box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+
+.socialLink:hover {
+  color: var(--color-primary);
+  border-color: var(--color-border-glow);
+  box-shadow: var(--shadow-glow-primary);
+  transform: translateY(-2px);
+}
+
+/* Scroll hint arrow */
+.scrollHint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--color-text-subtle);
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .bio { font-size: var(--text-base); }
+  .ctas { justify-content: center; }
+  .socials { justify-content: center; }
+}
