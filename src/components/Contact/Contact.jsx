@@ -48,7 +48,8 @@ const Contact = () => {
         setStatus('sent');
         formRef.current?.reset();
       })
-      .catch(() => {
+      .catch((err) => {
+        console.error('EmailJS error:', err);
         setStatus('error');
       });
   };
