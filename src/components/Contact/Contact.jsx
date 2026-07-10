@@ -1,7 +1,6 @@
-import { useRef, useState } from 'react';
-import emailjs from '@emailjs/browser';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
-import { FiMail, FiGithub, FiLinkedin, FiSend } from 'react-icons/fi';
+import { FiMail, FiGithub, FiLinkedin, FiMapPin } from 'react-icons/fi';
+import { HiOutlineStatusOnline } from 'react-icons/hi';
 import styles from './Contact.module.css';
 
 const contactLinks = [
@@ -10,49 +9,26 @@ const contactLinks = [
     label: 'Email',
     value: 'lobaton.ivankarll@gmail.com',
     href: 'mailto:lobaton.ivankarll@gmail.com',
-    icon: <FiMail size={20} />,
+    icon: <FiMail size={22} />,
   },
   {
     id: 'github',
     label: 'GitHub',
     value: 'github.com/ivankarll',
     href: 'https://github.com/ivankarll',
-    icon: <FiGithub size={20} />,
+    icon: <FiGithub size={22} />,
   },
   {
     id: 'linkedin',
     label: 'LinkedIn',
     value: 'linkedin.com/in/ivankarllobaton',
     href: 'https://linkedin.com/in/ivankarllobaton',
-    icon: <FiLinkedin size={20} />,
+    icon: <FiLinkedin size={22} />,
   },
 ];
 
 const Contact = () => {
   const { ref, inView } = useScrollAnimation();
-  const formRef = useRef(null);
-  const [status, setStatus] = useState('idle'); // idle | sending | sent | error
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setStatus('sending');
-
-    emailjs
-      .sendForm(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-        formRef.current,
-        { publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY }
-      )
-      .then(() => {
-        setStatus('sent');
-        formRef.current?.reset();
-      })
-      .catch((err) => {
-        console.error('EmailJS error:', err);
-        setStatus('error');
-      });
-  };
 
   return (
     <section id="contact" className={styles.contact}>
@@ -63,96 +39,63 @@ const Contact = () => {
           <span className="section-tag">// get in touch</span>
           <h2 className="section-title">Contact Me</h2>
           <p className="section-subtitle">
-            Have a question or want to work together? Drop me a message!
+            Have a question or want to work together? Reach out — I'd love to hear from you!
           </p>
         </div>
 
-        {/* Two-column: form + contact links */}
+        {/* Two-column: profile card + links */}
         <div className={`${styles.grid} ${inView ? styles.gridVisible : ''}`}>
 
-          {/* Contact Form */}
-          <form
-            ref={formRef}
-            onSubmit={handleSubmit}
-            className={styles.form}
-            noValidate
-          >
-            <div className={styles.field}>
-              <label htmlFor="contact-name" className={styles.label}>Name</label>
-              <input
-                id="contact-name"
-                name="from_name"
-                type="text"
-                placeholder="Your name"
-                className={styles.input}
-                required
+          {/* Left — Profile card */}
+          <div className={styles.profileCard}>
+            <div className={styles.photoWrap}>
+              <img
+                src={`${import.meta.env.BASE_URL}images/Lobaton-Ivan%20Karl%20L-9198.jpg`}
+                alt="Ivan Karl Lobaton"
+                className={styles.photo}
               />
             </div>
-            <div className={styles.field}>
-              <label htmlFor="contact-email" className={styles.label}>Email</label>
-              <input
-                id="contact-email"
-                name="reply_to"
-                type="email"
-                placeholder="your@email.com"
-                className={styles.input}
-                required
-              />
+            <h3 className={styles.profileName}>Ivan Karl Lobaton</h3>
+            <p className={styles.profileTitle}>Computer Engineer</p>
+            <div className={styles.profileMeta}>
+              <span className={styles.metaItem}>
+                <FiMapPin size={14} />
+                Hinigaran, Negros Occidental, PH
+              </span>
+              <span className={`${styles.metaItem} ${styles.available}`}>
+                <HiOutlineStatusOnline size={15} />
+                Open to Opportunities
+              </span>
             </div>
-            <div className={styles.field}>
-              <label htmlFor="contact-message" className={styles.label}>Message</label>
-              <textarea
-                id="contact-message"
-                name="message"
-                rows={5}
-                placeholder="What's on your mind?"
-                className={styles.textarea}
-                required
-              />
-            </div>
-            <button
-              id="contact-submit"
-              type="submit"
-              className={styles.submit}
-              disabled={status === 'sending' || status === 'sent'}
-            >
-              <FiSend size={16} />
-              {status === 'sending' ? 'Sending…'
-                : status === 'sent' ? '✓ Message Sent!'
-                  : status === 'error' ? '✗ Failed — Try Again'
-                    : 'Send Message'}
-            </button>
-            {status === 'error' && (
-              <p className={styles.errorMsg}>
-                Something went wrong. Please email me directly at{' '}
-                <a href="mailto:lobaton.ivankarll@gmail.com">lobaton.ivankarll@gmail.com</a>.
-              </p>
-            )}
-          </form>
-
-          {/* Contact Links */}
-          <div className={styles.links}>
-            <p className={styles.linksIntro}>
-              Prefer to reach out directly? Find me here:
+            <p className={styles.profileBio}>
+              I'm passionate about building intelligent systems and bringing them to life
+              through clean, interactive interfaces. Whether it's a quick question or a
+              collaboration proposal — my inbox is always open.
             </p>
-            {contactLinks.map((link) => (
+          </div>
+
+          {/* Right — Contact links */}
+          <div className={styles.links}>
+            {contactLinks.map((link, i) => (
               <a
                 key={link.id}
                 href={link.href}
                 target={link.id !== 'email' ? '_blank' : undefined}
                 rel="noopener noreferrer"
                 className={styles.contactLink}
+                style={{ transitionDelay: `${0.15 + i * 0.1}s` }}
               >
                 <span className={styles.contactIcon}>{link.icon}</span>
                 <div>
                   <p className={styles.contactLabel}>{link.label}</p>
                   <p className={styles.contactValue}>{link.value}</p>
                 </div>
+                <span className={styles.arrow}>→</span>
               </a>
             ))}
           </div>
-        </div>
 
+        </div>
       </div>
     </section>
   );

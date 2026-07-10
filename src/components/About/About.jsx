@@ -20,7 +20,7 @@ const About = () => {
           {/* Left: bio text */}
           <div className={styles.text}>
             <p>
-              Hi! I'm <strong>Ivan Karl</strong>, a software developer based in
+              Hi! I'm <strong>Ivan Karl</strong>, a computer engineer based in
               Hinigaran, Negros Occidental, Philippines. I love the challenge of
               taking complex datasets and intelligent algorithms and turning them
               into practical, interactive applications.

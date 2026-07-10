@@ -26,23 +26,35 @@
   gap: var(--space-6);
 }
 
-/* Logo */
 .logo {
   font-family: var(--font-mono);
   font-size: var(--text-lg);
   font-weight: 700;
-  background: var(--gradient-primary-text);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
   cursor: pointer;
   flex-shrink: 0;
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
   transition: opacity var(--transition-fast);
 }
 
 .logo:hover {
-  opacity: 0.8;
+  opacity: 0.85;
+}
+
+.logoBracket {
+  color: var(--color-primary);
+  font-size: var(--text-xl);
+  line-height: 1;
+}
+
+.logoName {
+  background: var(--gradient-primary-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  padding: 0 4px;
 }
 
 /* Desktop nav */
@@ -54,25 +66,46 @@
 }
 
 .navLink {
+  position: relative;
   padding: 0.4rem 0.7rem;
   font-size: var(--text-sm);
   font-weight: 500;
   color: var(--color-text-muted);
   border-radius: var(--radius-md);
   cursor: pointer;
-  transition: color var(--transition-fast), background var(--transition-fast);
+  transition: color var(--transition-fast);
   text-decoration: none;
   white-space: nowrap;
 }
 
+.navLink::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 60%;
+  height: 2px;
+  background: var(--color-primary);
+  border-radius: 2px;
+  transition: transform var(--transition-fast);
+}
+
 .navLink:hover {
   color: var(--color-text);
-  background: rgba(248, 250, 252, 0.06);
+}
+
+.navLink:hover::after {
+  transform: translateX(-50%) scaleX(1);
 }
 
 .navLink.active {
   color: var(--color-primary);
-  background: rgba(56, 189, 248, 0.08);
+}
+
+.navLink.active::after {
+  transform: translateX(-50%) scaleX(1);
+  background: var(--color-primary);
 }
 
 /* Resume button */

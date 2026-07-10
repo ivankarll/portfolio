@@ -4,11 +4,13 @@ import { FiGithub, FiLinkedin, FiMail, FiArrowDown } from 'react-icons/fi';
 import styles from './Hero.module.css';
 
 const ROLES = [
-  'Machine Learning Engineer',
+  'Computer Engineer',
   'Web Developer',
-  'Computer Vision Enthusiast',
+  'Machine Learning Developer',
   'Backend API Developer',
 ];
+
+const TECH_BADGES = ['React', 'Laravel', 'Python', 'TensorFlow', 'Flask', 'MySQL'];
 
 const useTypewriter = (texts, typingSpeed = 70, deletingSpeed = 40, pauseMs = 1800) => {
   const [display, setDisplay] = useState('');
@@ -50,24 +52,28 @@ const Hero = () => {
       {/* ambient glow handled by ::before in CSS */}
       <div className={styles.container}>
 
-        {/* Greeting */}
-        <p className={styles.greeting}>Hello, world! 👋</p>
+        {/* Greeting badge */}
+        <div className={styles.greetingBadge}>
+          <span className={styles.greetingDot} aria-hidden="true" />
+          Hello, world!&nbsp;I'm available for opportunities
+        </div>
 
         {/* Name */}
-        <h1 className={styles.name}>Hi, I'm Ivan Karl.</h1>
+        <h1 className={styles.name}>Hi, I'm <span className={styles.nameHighlight}>Ivan Karl</span>.</h1>
 
         {/* Typewriter role */}
         <p className={styles.role}>
+          <span className={styles.rolePrefix}>{'>'}&nbsp;</span>
           <span className={styles.typed}>{typedRole}</span>
           <span className={styles.cursor} aria-hidden="true">|</span>
         </p>
 
         {/* Subheadline / bio */}
         <p className={styles.bio}>
-          I specialize in combining <strong>Machine Learning</strong> with modern web
-          frameworks. Whether training neural networks for computer vision, developing
-          lightweight backend APIs, or structuring interactive UIs, I focus on bridging
-          intelligent data with intuitive software design.
+          Computer Engineering graduate passionate about <strong>developing modern web applications</strong>,
+          <strong> machine learning</strong>, and <strong>practical software solutions</strong>.
+          I enjoy building technology that solves real-world problems while creating
+          intuitive user experiences.
         </p>
 
         {/* CTA buttons */}
@@ -80,7 +86,7 @@ const Hero = () => {
             className="btn-primary"
             style={{ cursor: 'pointer' }}
           >
-            View My Work
+            Explore Projects
           </Link>
           <Link
             to="contact"
@@ -90,7 +96,7 @@ const Hero = () => {
             className="btn-outline"
             style={{ cursor: 'pointer' }}
           >
-            Let's Connect
+            Contact Me
           </Link>
         </div>
 
@@ -122,6 +128,14 @@ const Hero = () => {
             <FiMail size={18} />
           </a>
         </div>
+
+        {/* Tech badges */}
+        <div className={styles.badges}>
+          {TECH_BADGES.map((tech) => (
+            <span key={tech} className={styles.badge}>{tech}</span>
+          ))}
+        </div>
+
       </div>
 
       {/* Scroll hint */}

@@ -38,7 +38,9 @@ const Navbar = () => {
 
         {/* Logo */}
         <Link to="hero" smooth duration={600} className={styles.logo}>
-          Ivan Karl Lobaton
+          <span className={styles.logoBracket}>&lt;</span>
+          <span className={styles.logoName}>Ivan Karl</span>
+          <span className={styles.logoBracket}> /&gt;</span>
         </Link>
 
         {/* Desktop Nav Links */}
