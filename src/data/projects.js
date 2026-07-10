@@ -9,10 +9,11 @@
  *  tags        - tech stack used (shown as chips)
  *  github      - GitHub repo URL (set null to hide button)
  *  live        - live demo URL   (set null to hide button)
- *  image       - import or URL of project screenshot (set null for placeholder)
+ *  image       - filename inside public/images/ (set null for placeholder)
  *  featured    - if true, shown in a larger "featured" card
  */
 
+const base = import.meta.env.BASE_URL;
 
 export const projects = [
   {
@@ -22,7 +23,7 @@ export const projects = [
     tags: ['React', 'Laravel', 'MySQL'],
     github: "https://github.com/annkatm/LogicQuest.git",
     live: null,
-    image: '/images/LogicQuestSS.png',
+    image: `${base}images/LogicQuestSS.png`,
     featured: true,
   },
   {
@@ -32,7 +33,7 @@ export const projects = [
     tags: ['Verilog', 'Altera Quartus'],
     github: null,
     live: null,
-    image: '/images/ThesisPic.png',
+    image: `${base}images/ThesisPic.png`,
     featured: false,
   },
   {
@@ -42,7 +43,7 @@ export const projects = [
     tags: ['Python', 'TensorFlow/Keras', 'Flask', 'Natural Language Processing (NLP)'],
     github: "https://github.com/ivankarll/sentiment-analysis-nlp.git",
     live: null,
-    image: '/images/SentimentAnalysisSS.png',
+    image: `${base}images/SentimentAnalysisSS.png`,
     featured: true,
   },
   {
@@ -66,3 +67,4 @@ export const projects = [
     featured: false,
   },
 ];
+

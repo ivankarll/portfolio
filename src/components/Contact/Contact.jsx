@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import emailjs from '@emailjs/browser';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 import { FiMail, FiGithub, FiLinkedin, FiSend } from 'react-icons/fi';
 import styles from './Contact.module.css';
@@ -34,12 +35,22 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // TODO: Wire up to EmailJS, Formspree, or your preferred email service
     setStatus('sending');
-    setTimeout(() => {
-      setStatus('sent');
-      formRef.current?.reset();
-    }, 1200);
+
+    emailjs
+      .sendForm(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        formRef.current,
+        { publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY }
+      )
+      .then(() => {
+        setStatus('sent');
+        formRef.current?.reset();
+      })
+      .catch(() => {
+        setStatus('error');
+      });
   };
 
   return (
@@ -69,7 +80,7 @@ const Contact = () => {
               <label htmlFor="contact-name" className={styles.label}>Name</label>
               <input
                 id="contact-name"
-                name="name"
+                name="from_name"
                 type="text"
                 placeholder="Your name"
                 className={styles.input}
@@ -80,7 +91,7 @@ const Contact = () => {
               <label htmlFor="contact-email" className={styles.label}>Email</label>
               <input
                 id="contact-email"
-                name="email"
+                name="reply_to"
                 type="email"
                 placeholder="your@email.com"
                 className={styles.input}
@@ -107,8 +118,15 @@ const Contact = () => {
               <FiSend size={16} />
               {status === 'sending' ? 'Sending…'
                 : status === 'sent' ? '✓ Message Sent!'
-                  : 'Send Message'}
+                  : status === 'error' ? '✗ Failed — Try Again'
+                    : 'Send Message'}
             </button>
+            {status === 'error' && (
+              <p className={styles.errorMsg}>
+                Something went wrong. Please email me directly at{' '}
+                <a href="mailto:lobaton.ivankarll@gmail.com">lobaton.ivankarll@gmail.com</a>.
+              </p>
+            )}
           </form>
 
           {/* Contact Links */}

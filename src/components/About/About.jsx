@@ -63,7 +63,7 @@ const About = () => {
           <div className={styles.photoCol}>
             <div className={styles.photoWrap}>
               <img
-                src="/images/Lobaton, Ivan Karl L-9198.jpg"
+                src={`${import.meta.env.BASE_URL}images/Lobaton-Ivan%20Karl%20L-9198.jpg`}
                 alt="Ivan Karl Lobaton"
                 className={styles.photo}
               />

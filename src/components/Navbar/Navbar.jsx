@@ -61,7 +61,7 @@ const Navbar = () => {
 
         {/* Resume CTA */}
         <a
-          href="/files/Lobaton_IvanKarl_Resume.pdf"
+          href={`${import.meta.env.BASE_URL}files/Lobaton_IvanKarl_Resume.pdf`}
           target="_blank"
           rel="noopener noreferrer"
           className={styles.resumeBtn}
@@ -101,7 +101,7 @@ const Navbar = () => {
           </Link>
         ))}
         <a
-          href="/resume.pdf"
+          href={`${import.meta.env.BASE_URL}files/Lobaton_IvanKarl_Resume.pdf`}
           target="_blank"
           rel="noopener noreferrer"
           className={styles.mobileResume}

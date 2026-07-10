@@ -28,7 +28,7 @@ export const education = [
   },
   {
     id: 2,
-    degree: 'Science, Technology, Engineering, and Mathematics - Engineering/ICT (STEM-EICT Strand)',
+    degree: 'Science, Technology, Engineering, and Mathematics - Engineering/ICT (STEM-EICT) Strand',
     institution: 'Colegio San Agustin - Bacolod',
     location: 'Bacolod City, Negros Occidental, Philippines',
     startYear: '2020',
