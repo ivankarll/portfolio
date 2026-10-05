@@ -85,7 +85,7 @@ export const projects = [
   {
     id: 7,
     title: 'Task-to-Tree: Task Management System',
-    description: 'An intuitive, visually driven task management platform that helps users break down overwhelming goals into manageable, hierarchical sub-tasks represented as a structured tree.',
+    description: 'An intuitive, visually driven task management platform that helps users break down overwhelming goals into manageable, while creating an environmental impact by growing a tree in accomplishing tasks.',
     tags: ['HTML/CSS', 'PHP', 'MySQL'],
     github: null,
     live: null,

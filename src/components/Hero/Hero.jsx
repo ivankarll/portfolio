@@ -8,6 +8,7 @@ const ROLES = [
   'Web Developer',
   'Machine Learning Developer',
   'Backend API Developer',
+  'Data Analytics',
 ];
 
 const TECH_BADGES = ['React', 'Laravel', 'Python', 'TensorFlow', 'Flask', 'MySQL'];
